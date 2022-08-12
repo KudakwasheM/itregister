@@ -109,7 +109,7 @@
                                     {!! Form::email('email', $drcaccount->email, [
                                         'id' => 'email',
                                         'class' => 'name-group',
-                                        'placeholder' => 'e.g. user@gdczambia.co.zm',
+                                        'placeholder' => 'e.g. user@ltclogistics.com',
                                     ]) !!}
                                 </div>
                                 @if ($errors->has('email'))

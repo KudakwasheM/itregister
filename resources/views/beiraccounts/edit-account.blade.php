@@ -109,7 +109,7 @@
                                     {!! Form::email('email', $beiraccount->email, [
                                         'id' => 'email',
                                         'class' => 'name-group',
-                                        'placeholder' => 'e.g. user@gdczambia.co.zm',
+                                        'placeholder' => 'e.g. user@beira.whelson.co.zw',
                                     ]) !!}
                                 </div>
                                 @if ($errors->has('email'))
