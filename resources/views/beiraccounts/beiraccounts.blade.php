@@ -1,15 +1,15 @@
 <?php
 /**
- * Created by vscode for itreg
- * User: Tadiwa Dauya
- * Date: 6/25/2021
- * Time: 9:04 AM
+ * Created by PhpStorm for itreg
+ * User: Vincent Guyo
+ * Date: 6/21/2020
+ * Time: 8:57 AM
  */
 ?>
 @extends('layouts.app')
 
 @section('template_title')
-    Showing All Beitbridge O365 Accounts
+    Showing All Beira O365 Accounts
 @endsection
 
 @section('head')
@@ -31,8 +31,8 @@
             <div class="col-lg-8">
                 <div class="page-header-title">
                     <div class="d-inline">
-                        <h4>Beitbridge O365</h4>
-                        <span>Beitbridge O365 user accounts</span>
+                        <h4>Beira O365</h4>
+                        <span>Beira O365 user accounts</span>
                     </div>
                 </div>
             </div>
@@ -42,7 +42,7 @@
                         <li class="breadcrumb-item">
                             <a href="{{ url('/home') }}"> <i class="feather icon-home"></i> </a>
                         </li>
-                        <li class="breadcrumb-item"><a href="{{ url('/beitaccounts') }}">Beitbridge O365</a>
+                        <li class="breadcrumb-item"><a href="{{ url('/beiraccounts') }}">Beira O365</a>
                         </li>
                     </ul>
                 </div>
@@ -55,12 +55,12 @@
     <div class="page-body">
         <div class="card">
             <div class="card-header">
-                <h5>Beitbridge O365</h5>
+                <h5>Beira O365</h5>
                 <div class="card-header-right">
                     <ul class="list-unstyled card-option">
-                        <a href="{{ url('beitaccounts/create') }}" class="btn btn-round btn-light float-right">
+                        <a href="{{ url('beiraccounts/create') }}" class="btn btn-round btn-light float-right">
                             <i class="feather icon-plus" aria-hidden="true"></i>
-                            Add Beitbridge O365 Account
+                            Add Beira O365 Account
                         </a>
                     </ul>
                 </div>
@@ -79,32 +79,32 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($beitaccounts as $beitaccount)
+                            @foreach ($beiraccounts as $beiraccount)
                                 <tr>
-                                    <td>{{ $beitaccount->user }}</td>
-                                    <td>{{ $beitaccount->email }}</td>
-                                    <td>{{ $beitaccount->password }}</td>
-                                    <td>{{ $beitaccount->prev_password }}</td>
-                                    <td>{{ $beitaccount->last_agent }}</td>
+                                    <td>{{ $beiraccount->user }}</td>
+                                    <td>{{ $beiraccount->email }}</td>
+                                    <td>{{ $beiraccount->password }}</td>
+                                    <td>{{ $beiraccount->prev_password }}</td>
+                                    <td>{{ $beiraccount->last_agent }}</td>
                                     <td style="white-space: nowrap;">
-                                        {!! Form::open(['url' => 'beitaccounts/' . $beitaccount->id, 'class' => 'btn btn-mini']) !!}
+                                        {!! Form::open(['url' => 'beiraccounts/' . $beiraccount->id, 'class' => 'btn btn-mini']) !!}
                                         {!! Form::hidden('_method', 'DELETE') !!}
                                         {!! Form::button('<i class="feather icon-trash-2"></i>', [
                                             'class' => 'btn btn-danger btn-mini',
                                             'type' => 'button',
                                             'data-toggle' => 'modal',
                                             'data-target' => '#confirmDelete',
-                                            'data-title' => 'Delete Beitbridge O365 Acoount',
+                                            'data-title' => 'Delete Beira O365 Acoount',
                                             'data-message' => 'Are you sure you want to delete this account ?',
                                         ]) !!}
                                         {!! Form::close() !!}
 
-                                        {{-- <a class="btn btn-success btn-mini" href="{{ URL::to('beitaccounts/' . $beitaccount->id) }}" >
+                                        {{-- <a class="btn btn-success btn-mini" href="{{ URL::to('beiraccounts/' . $beiraccount->id) }}" >
                                         <i class="feather icon-eye"></i>
                                     </a> --}}
 
                                         <a class="btn btn-primary btn-mini"
-                                            href="{{ URL::to('beitaccounts/' . $beitaccount->id . '/edit') }}">
+                                            href="{{ URL::to('beiraccounts/' . $beiraccount->id . '/edit') }}">
                                             <i class="feather icon-edit"></i>
                                         </a>
                                     </td>

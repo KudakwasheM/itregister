@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => ['web', 'checkblocked']], function () {
     Route::get('/', 'WelcomeController@welcome')->name('welcome');
     Route::get('/terms', 'TermsController@terms')->name('terms');
-    Route::get('/getTitles/{department}','JobTitleController@getTitles')->name('jobtitles.fetch');
+    Route::get('/getTitles/{department}', 'JobTitleController@getTitles')->name('jobtitles.fetch');
 });
 
 // Authentication Routes
@@ -45,7 +45,7 @@ Route::group(['middleware' => ['web', 'activity', 'checkblocked']], function () 
 });
 
 // Registered and Activated User Routes
-Route::group(['middleware' => ['auth', 'checkpass','activated', 'activity', 'checkblocked']], function () {
+Route::group(['middleware' => ['auth', 'checkpass', 'activated', 'activity', 'checkblocked']], function () {
 
     // Activation Routes
     Route::get('/activation-required', ['uses' => 'Auth\ActivateController@activationRequired'])->name('activation-required');
@@ -55,7 +55,7 @@ Route::group(['middleware' => ['auth', 'checkpass','activated', 'activity', 'che
 });
 
 // Registered and Activated User Routes
-Route::group(['middleware' => ['auth', 'checkpass','activated', 'activity', 'twostep', 'checkblocked']], function () {
+Route::group(['middleware' => ['auth', 'checkpass', 'activated', 'activity', 'twostep', 'checkblocked']], function () {
 
     //  Homepage Route - Redirect based on user role is in controller.
     Route::get('/home', ['as' => 'public.home',   'uses' => 'UserController@index']);
@@ -68,7 +68,7 @@ Route::group(['middleware' => ['auth', 'checkpass','activated', 'activity', 'two
 });
 
 // Registered, activated, and is current user routes.
-Route::group(['middleware' => ['auth','checkpass', 'activated', 'currentUser', 'activity', 'twostep', 'checkblocked']], function () {
+Route::group(['middleware' => ['auth', 'checkpass', 'activated', 'currentUser', 'activity', 'twostep', 'checkblocked']], function () {
 
     // User Profile and Account Routes
     Route::resource(
@@ -112,7 +112,7 @@ Route::group(['middleware' => ['auth','checkpass', 'activated', 'currentUser', '
 });
 
 // Registered, activated, and is admin routes.
-Route::group(['middleware' => ['auth','checkpass', 'activated', 'activity', 'twostep', 'checkblocked']], function () {
+Route::group(['middleware' => ['auth', 'checkpass', 'activated', 'activity', 'twostep', 'checkblocked']], function () {
     Route::resource('/users/deleted', 'SoftDeletesController', [
         'only' => [
             'index', 'show', 'update', 'destroy',
@@ -142,7 +142,7 @@ Route::group(['middleware' => ['auth','checkpass', 'activated', 'activity', 'two
     Route::get('active-users', 'AdminDetailsController@activeUsers');
 });
 
-Route::group(['middleware' => ['auth','checkpass', 'activated', 'activity', 'twostep', 'checkblocked']], function () {
+Route::group(['middleware' => ['auth', 'checkpass', 'activated', 'activity', 'twostep', 'checkblocked']], function () {
 
     Route::resource('departments', 'DepartmentController', [
         'names' => [
@@ -153,10 +153,9 @@ Route::group(['middleware' => ['auth','checkpass', 'activated', 'activity', 'two
             'deleted',
         ],
     ]);
-
 });
 
-Route::group(['middleware' => ['auth','checkpass', 'activated', 'activity', 'twostep', 'checkblocked']], function () {
+Route::group(['middleware' => ['auth', 'checkpass', 'activated', 'activity', 'twostep', 'checkblocked']], function () {
 
     Route::resource('jobtitles', 'JobTitleController', [
         'names' => [
@@ -167,10 +166,9 @@ Route::group(['middleware' => ['auth','checkpass', 'activated', 'activity', 'two
             'deleted',
         ],
     ]);
-
 });
 
-Route::group(['middleware' => ['auth','checkpass', 'activated', 'activity', 'twostep', 'checkblocked']], function () {
+Route::group(['middleware' => ['auth', 'checkpass', 'activated', 'activity', 'twostep', 'checkblocked']], function () {
     Route::resource('/iassets/deleted', 'SoftDeleteAssetController', [
         'only' => [
             'index', 'show', 'update', 'destroy',
@@ -187,12 +185,11 @@ Route::group(['middleware' => ['auth','checkpass', 'activated', 'activity', 'two
         ],
     ]);
 
-    Route::get('/assetsreport','AssetController@getAssetsReport')->name('assets.report');
-    Route::get('/assetsbatcher','AssetController@updateAssetsAge')->name('assets.updater');
-
+    Route::get('/assetsreport', 'AssetController@getAssetsReport')->name('assets.report');
+    Route::get('/assetsbatcher', 'AssetController@updateAssetsAge')->name('assets.updater');
 });
 
-Route::group(['middleware' => ['auth','checkpass', 'activated', 'activity', 'twostep', 'checkblocked']], function () {
+Route::group(['middleware' => ['auth', 'checkpass', 'activated', 'activity', 'twostep', 'checkblocked']], function () {
 
     Route::resource('desktops', 'DesktopController', [
         'names' => [
@@ -203,7 +200,6 @@ Route::group(['middleware' => ['auth','checkpass', 'activated', 'activity', 'two
             'deleted',
         ],
     ]);
-
 });
 
 Route::group(['middleware' => ['auth', 'checkpass', 'activated', 'activity', 'twostep', 'checkblocked']], function () {
@@ -217,7 +213,6 @@ Route::group(['middleware' => ['auth', 'checkpass', 'activated', 'activity', 'tw
             'deleted',
         ],
     ]);
-
 });
 
 // Route::group(['middleware' => ['auth', 'checkpass', 'activated', 'activity', 'twostep', 'checkblocked']], function () {
@@ -234,10 +229,10 @@ Route::group(['middleware' => ['auth', 'checkpass', 'activated', 'activity', 'tw
 
 // });
 
-Route::get('nonlaptops', 'NonLaptopController@index')->middleware('auth', 'checkpass', 'activated','activity','twostep', 'checkblocked');
-Route::get('nondesktops', 'NonallocatedDesktop@index')->middleware('auth', 'checkpass', 'activated','activity','twostep', 'checkblocked');
+Route::get('nonlaptops', 'NonLaptopController@index')->middleware('auth', 'checkpass', 'activated', 'activity', 'twostep', 'checkblocked');
+Route::get('nondesktops', 'NonallocatedDesktop@index')->middleware('auth', 'checkpass', 'activated', 'activity', 'twostep', 'checkblocked');
 
-Route::group(['middleware' => ['auth','checkpass', 'activated','role:admin', 'activity', 'twostep', 'checkblocked']], function () {
+Route::group(['middleware' => ['auth', 'checkpass', 'activated', 'role:admin', 'activity', 'twostep', 'checkblocked']], function () {
 
     Route::resource('brands', 'BrandController', [
         'names' => [
@@ -248,10 +243,9 @@ Route::group(['middleware' => ['auth','checkpass', 'activated','role:admin', 'ac
             'deleted',
         ],
     ]);
-
 });
 
-Route::group(['middleware' => ['auth', 'checkpass', 'activated','role:admin', 'activity', 'twostep', 'checkblocked']], function () {
+Route::group(['middleware' => ['auth', 'checkpass', 'activated', 'role:admin', 'activity', 'twostep', 'checkblocked']], function () {
 
     Route::resource('harddrives', 'HarddriveController', [
         'names' => [
@@ -262,7 +256,6 @@ Route::group(['middleware' => ['auth', 'checkpass', 'activated','role:admin', 'a
             'deleted',
         ],
     ]);
-
 });
 
 Route::group(['middleware' => ['auth', 'checkpass', 'activated', 'activity', 'twostep', 'checkblocked']], function () {
@@ -276,7 +269,6 @@ Route::group(['middleware' => ['auth', 'checkpass', 'activated', 'activity', 'tw
             'deleted',
         ],
     ]);
-
 });
 
 Route::group(['middleware' => ['auth', 'checkpass', 'activated', 'activity', 'twostep', 'checkblocked']], function () {
@@ -290,7 +282,6 @@ Route::group(['middleware' => ['auth', 'checkpass', 'activated', 'activity', 'tw
             'deleted',
         ],
     ]);
-
 });
 
 Route::group(['middleware' => ['auth', 'checkpass', 'activated', 'activity', 'twostep', 'checkblocked']], function () {
@@ -309,7 +300,6 @@ Route::group(['middleware' => ['auth', 'checkpass', 'activated', 'activity', 'tw
             'deleted',
         ],
     ]);
-
 });
 
 Route::group(['middleware' => ['auth', 'checkpass', 'activated', 'activity', 'twostep', 'checkblocked']], function () {
@@ -328,7 +318,6 @@ Route::group(['middleware' => ['auth', 'checkpass', 'activated', 'activity', 'tw
             'deleted',
         ],
     ]);
-
 });
 
 Route::group(['middleware' => ['auth', 'checkpass', 'activated', 'activity', 'twostep', 'checkblocked']], function () {
@@ -342,7 +331,6 @@ Route::group(['middleware' => ['auth', 'checkpass', 'activated', 'activity', 'tw
             'deleted',
         ],
     ]);
-
 });
 
 Route::group(['middleware' => ['auth', 'checkpass', 'activated', 'activity', 'twostep', 'checkblocked']], function () {
@@ -356,8 +344,46 @@ Route::group(['middleware' => ['auth', 'checkpass', 'activated', 'activity', 'tw
             'deleted',
         ],
     ]);
-
 });
+Route::group(['middleware' => ['auth', 'checkpass', 'activated', 'activity', 'twostep', 'checkblocked']], function () {
+
+    Route::resource('chiaccounts', 'ChiaccountController', [
+        'names' => [
+            'index'   => 'chiaccounts',
+            'destroy' => 'chiaccount.destroy',
+        ],
+        'except' => [
+            'deleted',
+        ],
+    ]);
+});
+
+Route::group(['middleware' => ['auth', 'checkpass', 'activated', 'activity', 'twostep', 'checkblocked']], function () {
+
+    Route::resource('beiraccounts', 'BeiraccountController', [
+        'names' => [
+            'index'   => 'beiraccounts',
+            'destroy' => 'beiraccount.destroy',
+        ],
+        'except' => [
+            'deleted',
+        ],
+    ]);
+});
+
+Route::group(['middleware' => ['auth', 'checkpass', 'activated', 'activity', 'twostep', 'checkblocked']], function () {
+
+    Route::resource('drcaccounts', 'DrcaccountController', [
+        'names' => [
+            'index'   => 'drcaccounts',
+            'destroy' => 'drcaccount.destroy',
+        ],
+        'except' => [
+            'deleted',
+        ],
+    ]);
+});
+
 Route::group(['middleware' => ['auth', 'checkpass', 'activated', 'activity', 'twostep', 'checkblocked']], function () {
 
     Route::resource('beitaccounts', 'BeitaccountController', [
@@ -369,7 +395,6 @@ Route::group(['middleware' => ['auth', 'checkpass', 'activated', 'activity', 'tw
             'deleted',
         ],
     ]);
-
 });
 
 Route::group(['middleware' => ['auth', 'checkpass', 'activated', 'activity', 'twostep', 'checkblocked']], function () {
@@ -383,7 +408,6 @@ Route::group(['middleware' => ['auth', 'checkpass', 'activated', 'activity', 'tw
             'deleted',
         ],
     ]);
-
 });
 
 Route::group(['middleware' => ['auth', 'checkpass', 'activated', 'activity', 'twostep', 'checkblocked']], function () {
@@ -397,7 +421,6 @@ Route::group(['middleware' => ['auth', 'checkpass', 'activated', 'activity', 'tw
             'deleted',
         ],
     ]);
-
 });
 
 Route::group(['middleware' => ['auth', 'checkpass', 'activated', 'activity', 'twostep', 'checkblocked']], function () {
@@ -413,7 +436,6 @@ Route::group(['middleware' => ['auth', 'checkpass', 'activated', 'activity', 'tw
     ]);
 
     Route::get('noncompliant', 'MaintenanceController@getNonCompliantUsers')->middleware('activity');
-
 });
 
 Route::get('maintenance-log', 'MaintenanceController@getMaintenanceLog')->middleware('activity');
@@ -431,10 +453,9 @@ Route::group(['middleware' => ['auth', 'checkpass', 'activated', 'activity', 'tw
             'deleted',
         ],
     ]);
-
 });
 
-Route::group(['middleware' => ['auth','checkpass', 'activated','role:admin', 'activity', 'twostep', 'checkblocked']], function () {
+Route::group(['middleware' => ['auth', 'checkpass', 'activated', 'role:admin', 'activity', 'twostep', 'checkblocked']], function () {
 
     Route::resource('wifis', 'WifiController', [
         'names' => [
@@ -445,7 +466,6 @@ Route::group(['middleware' => ['auth','checkpass', 'activated','role:admin', 'ac
             'deleted',
         ],
     ])->middleware(['admin']);
-
 });
 
 Route::redirect('/php', '/phpinfo', 301);
